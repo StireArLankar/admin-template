@@ -1,0 +1,60 @@
+{
+	"type": "object",
+	"properties": {
+		"service": {
+			"type": "object",
+			"properties": {
+				"name": { "type": "string", "description": "App name" },
+				"environment": { "type": "string", "description": "Environment" },
+				"hostUrl": { "type": "string", "description": "Base path" }
+			},
+			"required": ["name", "environment", "hostUrl"],
+			"additionalProperties": false,
+			"description": "Base config for service"
+		},
+		"ports": {
+			"type": "object",
+			"properties": {
+				"application": {
+					"type": ["string", "number"],
+					"description": "Main port"
+				},
+				"management": {
+					"type": ["string", "number"],
+					"description": "Manage port"
+				}
+			},
+			"required": ["application", "management"],
+			"additionalProperties": false,
+			"description": "Ports config"
+		},
+		"users": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"login": { "type": "string", "description": "login" },
+					"password": { "type": "string", "description": "password" },
+					"role": {
+						"type": "string",
+						"enum": ["admin", "user"],
+						"default": "user",
+						"description": "role"
+					}
+				},
+				"required": ["login", "password"],
+				"additionalProperties": false
+			},
+			"description": "users"
+		},
+		"client": {
+			"type": "object",
+			"properties": { "hello": { "type": "string", "const": "world" } },
+			"required": ["hello"],
+			"additionalProperties": false
+		}
+	},
+	"required": ["service", "ports", "users", "client"],
+	"additionalProperties": false,
+	"$schema": "http://json-schema.org/draft-07/schema#"
+}

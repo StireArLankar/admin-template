@@ -1,0 +1,3 @@
+.noTable > * {
+	display: block !important;
+}

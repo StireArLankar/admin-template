@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
+		/>
+		<base href="/" />
+		<script>
+			window["__clientGlobalConfig__"] = <%- client %>;
+			window["__clientConfig__"] = "%GLOBAL%";
+		</script>
+		<title><%- title %></title>
+		<link rel="shortcut icon" href="vite.svg" type="image/x-icon" />
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
+</html>

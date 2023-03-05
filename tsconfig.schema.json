@@ -1,0 +1,4 @@
+{
+	"extends": "./src/server/tsconfig.json",
+	"files": ["src/global.d.ts", "src/server/config/config.devops.ts"]
+}

@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=../src/server/config/devops.schema.json
+
+service:
+  environment: local
+  hostUrl: /
+  name: server-template
+
+ports:
+  application: '9001'
+  management: '9000'
+
+users:
+  - login: admin
+    password: admin
+    role: admin
+
+  - login: user
+    password: user
+
+client:
+  hello: world
