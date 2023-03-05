@@ -5,8 +5,10 @@
 - `trpc`
 - `express`
 - `vite`
+- `@tanstack/react-router` and `@tanstack/react-table`
+- `@radix-ui`
 
-## Comands
+## Commands
 
 ### Install dependencies with pnpm
 
@@ -14,7 +16,7 @@
 pnpm i
 ```
 
-### Run dev cient and server
+### Run dev client and server
 
 ```bash
 pnpm dev
