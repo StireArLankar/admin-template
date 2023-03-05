@@ -8,7 +8,7 @@
 
 ## Comands
 
-### Install dependancies with pnpm
+### Install dependencies with pnpm
 
 ```bash
 pnpm i
