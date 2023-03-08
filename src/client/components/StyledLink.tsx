@@ -1,10 +1,10 @@
 import { Link, RegisteredRoutesInfo } from '@tanstack/react-router'
-import copy from 'copy-to-clipboard'
-import { Copy } from 'lucide-react'
 import { tv } from 'tailwind-variants'
 import { tw } from 'typewind'
 
-import { Button, buttonVariants } from '@/components/ui/Button'
+import { CopyComponent } from './ui/CopyComponent'
+
+import { buttonVariants } from '@/components/ui/Button'
 
 type StyledLinkProps = {
 	id: string | null | undefined
@@ -58,14 +58,7 @@ export const StyledLink = (props: StyledLinkProps) => {
 	return (
 		<div className={tw.flex.p_1.space_x_1}>
 			<div className={tw.text_center.flex_1}>{renderLink()}</div>
-			<Button
-				variant='subtle'
-				size='sm'
-				className={tw.px_2.py_1}
-				onClick={() => copy(id)}
-			>
-				<Copy transform='scale(0.9)' />
-			</Button>
+			<CopyComponent value={id} />
 		</div>
 	)
 }

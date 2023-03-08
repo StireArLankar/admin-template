@@ -31,12 +31,12 @@ const tabsClasses = tv({
 })()
 
 const statusClass = tv({
-	base: tw.bg_opacity_40.px_3.py_2.rounded_md.text_center.text_lg.border,
+	base: tw.px_3.py_2.rounded_md.text_center.text_lg.border,
 	variants: {
 		status: {
-			fail: tw.bg_red_400.border_red_400,
-			success: tw.bg_green_400.border_green_400,
-			processing: tw.bg_blue_400.border_blue_400,
+			fail: tw.important(tw.bg_red_400$[40].border_red_400),
+			success: tw.important(tw.bg_green_400$[40].border_green_400),
+			processing: tw.important(tw.bg_blue_400$[40].border_blue_400),
 		},
 	},
 })
@@ -47,8 +47,8 @@ const cardClass = tv({
 
 	variants: {
 		status: {
-			fail: tw.bg_red_400.border_red_400.bg_opacity_40,
-			success: tw.bg_green_400.border_green_400.bg_opacity_40,
+			fail: tw.important(tw.bg_red_400$[40].border_red_400),
+			success: tw.important(tw.bg_green_400$[40].border_green_400),
 		},
 	},
 })

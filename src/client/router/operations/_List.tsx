@@ -63,7 +63,16 @@ const idColumn = columnHelper.accessor('id', {
 
 const updatedAtColumn = columnHelper.accessor('updatedAt', {
 	header: 'updatedAt',
-	cell: (info) => <OutlinedCell value={formatDate(info.getValue())} />,
+	cell: (info) => {
+		const value = info.getValue()
+
+		return (
+			<OutlinedCell
+				value={formatDate(value)}
+				tooltipValue={value?.toISOString?.()}
+			/>
+		)
+	},
 	enableSorting: getEnableSorting('updatedAt'),
 	enableColumnFilter: getEnableColumnFilter('updatedAt'),
 })
@@ -73,6 +82,7 @@ const userIdColumn = columnHelper.accessor('userId', {
 	cell: (info) => (
 		<SearchableCell
 			value={info.getValue()}
+			colorize={2}
 			setFilterValue={(value) =>
 				info.column.setFilterValue({ type: 'name', value })
 			}
@@ -83,9 +93,9 @@ const userIdColumn = columnHelper.accessor('userId', {
 })
 
 const resultClassByValue: Record<NonNullable<Item['status']>, any> = {
-	fail: tw.bg_red_400.bg_opacity_40,
-	success: tw.bg_green_400.bg_opacity_40,
-	processing: tw.bg_blue_400.bg_opacity_40,
+	fail: tw.important(tw.bg_red_400$[40].border_red_400),
+	success: tw.important(tw.bg_green_400$[40].border_green_400),
+	processing: tw.important(tw.bg_blue_400$[40].border_blue_400),
 }
 
 const statusColumn = columnHelper.accessor('status', {

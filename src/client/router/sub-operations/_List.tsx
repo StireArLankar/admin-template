@@ -24,6 +24,7 @@ const getEnableSorting = (key: keyof BoolMap) => enableSortMap[key] ?? false
 
 const enableFilterMap: BoolMap = {
 	status: true,
+	id: true,
 }
 
 const getEnableColumnFilter = (key: keyof BoolMap) =>
@@ -73,14 +74,16 @@ const depositIdColumn = columnHelper.accessor('id', {
 	cell: (info) => <StyledLink to='/sub-operations/$id' id={info.getValue()} />,
 	id: `213`,
 	header: () => <span style={{ whiteSpace: 'nowrap' }}>subOperationId</span>,
-	enableSorting: getEnableSorting('id'),
-	enableColumnFilter: getEnableColumnFilter('id'),
+	enableSorting: false,
+	enableColumnFilter: false,
+	// enableSorting: getEnableSorting('id'),
+	// enableColumnFilter: getEnableColumnFilter('id'),
 })
 
 const resultClassByValue: Record<NonNullable<Item['status']>, any> = {
-	fail: tw.bg_red_400.bg_opacity_40,
-	success: tw.bg_green_400.bg_opacity_40,
-	processing: tw.bg_blue_400.bg_opacity_40,
+	fail: tw.important(tw.bg_red_400$[40].border_red_400),
+	success: tw.important(tw.bg_green_400$[40].border_green_400),
+	processing: tw.important(tw.bg_blue_400$[40].border_blue_400),
 }
 
 const statusColumn = columnHelper.accessor('status', {

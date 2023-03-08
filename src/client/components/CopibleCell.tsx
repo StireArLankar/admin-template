@@ -1,7 +1,7 @@
-import copy from 'copy-to-clipboard'
-import { Copy } from 'lucide-react'
 import { tv } from 'tailwind-variants'
 import { tw } from 'typewind'
+
+import { CopyComponent } from './ui/CopyComponent'
 
 import { Button } from '@/components/ui/Button'
 import { stringToTWBgColor } from '@/utils/stringToColor'
@@ -38,14 +38,7 @@ export const CopibleCell = (props: CellProps) => {
 				{value}
 			</Button>
 
-			<Button
-				variant='subtle'
-				size='sm'
-				className={tw.px_2.py_1.flex_1}
-				onClick={() => copy(value)}
-			>
-				<Copy transform='scale(0.9)' />
-			</Button>
+			<CopyComponent value={value} />
 		</div>
 	)
 }

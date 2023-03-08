@@ -18,7 +18,7 @@ const Temp = memo(() => {
 
 		return (
 			<div>
-				<div>{data.createdAt}</div>
+				<div>{data.createdAt.toISOString()}</div>
 			</div>
 		)
 	}

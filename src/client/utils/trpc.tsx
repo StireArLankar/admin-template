@@ -9,6 +9,7 @@ import {
 	httpBatchLink,
 	inferRouterProxyClient,
 } from '@trpc/react-query'
+import superjson from 'superjson'
 
 import { basePath } from '@/global'
 import { useAuthStore } from '@/store/auth'
@@ -79,6 +80,7 @@ export default (props: PropsWithChildren<{}>) => {
 		})()
 
 		return trpc.createClient({
+			transformer: superjson,
 			links: [
 				// call subscriptions through websockets and the rest over http
 				splitLink({

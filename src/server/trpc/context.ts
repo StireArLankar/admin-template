@@ -4,6 +4,7 @@ import type { PrismaClient } from '@prisma/client'
 import { initTRPC, TRPCError } from '@trpc/server'
 import { CreateExpressContextOptions } from '@trpc/server/adapters/express'
 import { CreateWSSContextFnOptions } from '@trpc/server/adapters/ws'
+import superjson from 'superjson'
 import { OpenApiMeta } from 'trpc-openapi'
 import { ZodError } from 'zod'
 
@@ -21,6 +22,7 @@ export const t = initTRPC
 	.meta<OpenApiMeta>()
 	.context<Context>()
 	.create({
+		transformer: superjson,
 		errorFormatter({ shape, error }) {
 			delete shape.data.stack
 			delete error.stack
