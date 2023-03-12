@@ -6,10 +6,10 @@ import { tw } from 'typewind'
 const base =
 	tw.border.border_transparent.inline_flex.items_center.justify_center.rounded_md.text_sm.font_medium.transition_colors
 		.focus(tw.outline_none.ring_2.ring_offset_2)
-		.hover(tw.bg_primary_800.text_primary_text)
-		.focus(tw.ring_primary_400.ring_offset_primary_900)
+		.hover(tw.bg_primary_700.text_primary_text)
+		.focus(tw.ring_primary_300.ring_offset_primary_800)
 		.disabled(tw.opacity_50.pointer_events_none)
-		.variant('&[data-state=open]', tw.bg_primary_800)
+		.variant('&[data-state=open]', tw.bg_primary_700)
 
 const buttonVariants = tv({
 	base: base,
@@ -19,13 +19,13 @@ const buttonVariants = tv({
 
 			destructive: tw.bg_red_500.text_white.hover(tw.bg_red_600),
 
-			outline: tw.hover(tw.bg_primary_800).bg_transparent.border
-				.border_primary_700.text_primary_text,
+			outline: tw.hover(tw.bg_primary_700).bg_transparent.border
+				.border_primary_600.text_primary_text,
 
-			subtle: tw.bg_primary_700.text_primary_text.hover(tw.bg_primary_800),
+			subtle: tw.bg_primary_600.text_primary_text.hover(tw.bg_primary_700),
 
 			ghost: tw.bg_transparent.text_primary_text
-				.hover(tw.bg_primary_800)
+				.hover(tw.bg_primary_700)
 				.variant('&[data-state=open]', tw.bg_transparent),
 
 			link: tw.hover(tw.underline.bg_transparent).bg_transparent

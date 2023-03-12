@@ -8,7 +8,7 @@ import { tw } from 'typewind'
 const classes = tv({
 	slots: {
 		root: tw.flex.h_10.items_center.space_x_1.rounded_md.border.p_1
-			.border_primary_700.bg_primary_800,
+			.border_primary_500.bg_primary_800,
 
 		trigger: tw.rounded_[
 			'0.2rem'
@@ -23,7 +23,7 @@ const classes = tv({
 			],
 
 		content:
-			tw.bg_primary_1000.border_primary_800.text_primary_400.z_50.border.p_1
+			tw.bg_primary_1000.border_primary_600.text_primary_400.z_50.border.p_1
 				.rounded_md.shadow_md.animate_in.slide_in_from_top_1.overflow_hidden
 				.min_w_['12rem'],
 
