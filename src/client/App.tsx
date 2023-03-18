@@ -1,11 +1,15 @@
 import './index.css'
 import './global'
 
-import { ThemeProvider } from 'next-themes'
+import { memo, useEffect, useLayoutEffect } from 'react'
+
+import { ThemeProvider, useTheme } from 'next-themes'
 import { tw } from 'typewind'
 
-import Router from './router'
+import { useCustomTheme } from './store/customTheme'
 
+import Router from '@/router'
+import { useFontSize } from '@/store/fontSize'
 import TRPCProvider from '@/utils/trpc'
 
 const rootClass =
@@ -13,8 +17,22 @@ const rootClass =
 		.text_primary_text.antialiased
 
 function App() {
+	const [fontSize] = useFontSize()
+
+	const [val] = useCustomTheme()
+
+	useLayoutEffect(() => {
+		document.documentElement.style.setProperty('font-size', fontSize + 'px')
+	}, [fontSize])
+
 	return (
-		<ThemeProvider attribute='data-theme'>
+		<ThemeProvider
+			attribute='data-theme'
+			disableTransitionOnChange
+			themes={val ? ['dark', 'light', 'custom'] : ['dark', 'light']}
+			// themes={['dark', 'light']}
+		>
+			<CustomThemeControlller />
 			<TRPCProvider>
 				<div className={rootClass}>
 					<Router />
@@ -23,5 +41,32 @@ function App() {
 		</ThemeProvider>
 	)
 }
+
+const CustomThemeControlller = memo(() => {
+	const { theme, setTheme } = useTheme()
+
+	const [data] = useCustomTheme()
+
+	useEffect(() => {
+		if (theme !== 'custom') {
+			return
+		}
+
+		if (!data) {
+			setTheme('system')
+			return
+		}
+
+		const zxc = Object.entries(data)
+
+		zxc.forEach((v) => document.documentElement.style.setProperty(v[0], v[1]))
+
+		return () => {
+			zxc.forEach((v) => document.documentElement.style.removeProperty(v[0]))
+		}
+	}, [theme, data, setTheme])
+
+	return null
+})
 
 export default App

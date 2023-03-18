@@ -9,6 +9,7 @@ import { layoutRoute } from './layout'
 import { rootRoute } from './rootRoute'
 
 import operationsRoute from '@/router/operations'
+import settingsRoute from '@/router/settings'
 import subOperationsRoute from '@/router/sub-operations'
 
 // Create an index route
@@ -24,7 +25,7 @@ const indexRoute = new Route({
 // Create the route tree using your routes
 const routeTree = rootRoute.addChildren([
 	indexRoute,
-	layoutRoute.addChildren([subOperationsRoute, operationsRoute]),
+	layoutRoute.addChildren([subOperationsRoute, operationsRoute, settingsRoute]),
 ])
 
 // Create the router using your route tree

@@ -16,10 +16,10 @@ const classes = tv({
 		viewport: tw.block.h_full.w_full.rounded_['inherit'].flex_1.flex,
 		thumb: tw.relative.flex_1.rounded_full.bg_primary_700,
 		verticalScrollbar: scrollbar({
-			className: tw.h_full.w_['2.5'].border_l_transparent.border_l,
+			className: tw.h_full.w_[3.5].p_['0.1rem'].border_l_transparent.border_l,
 		}),
 		horizontalScrollbar: scrollbar({
-			className: tw.w_full.h_['2.5'].border_t_transparent.border_t,
+			className: tw.w_full.h_[3.5].p_['0.1rem'].border_t_transparent.border_t,
 		}),
 	},
 })()

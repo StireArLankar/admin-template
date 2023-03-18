@@ -12,6 +12,48 @@ module.exports = {
 	},
 	darkMode: ['class', '[data-theme="dark"]'],
 	theme: {
+		textDecorationThickness: {
+			0: '0rem',
+			1: '0.0625rem',
+			2: '0.125rem',
+			4: '0.25rem',
+			8: '0.5rem',
+		},
+		outlineOffset: {
+			0: '0rem',
+			1: '0.0625rem',
+			2: '0.125rem',
+			4: '0.25rem',
+			8: '0.5rem',
+		},
+		outlineWidth: {
+			0: '0rem',
+			1: '0.0625rem',
+			2: '0.125rem',
+			4: '0.25rem',
+			8: '0.5rem',
+		},
+		textUnderlineOffset: {
+			0: '0rem',
+			1: '0.0625rem',
+			2: '0.125rem',
+			4: '0.25rem',
+			8: '0.5rem',
+		},
+		borderWidth: {
+			DEFAULT: '0.0625rem',
+			0: '0rem',
+			2: '0.125rem',
+			4: '0.25rem',
+			8: '0.5rem',
+		},
+		ringOffsetWidth: {
+			0: '0rem',
+			1: '0.0625rem',
+			2: '0.125rem',
+			4: '0.25rem',
+			8: '0.5rem',
+		},
 		extend: {
 			keyframes: {
 				'accordion-down': {

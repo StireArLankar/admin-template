@@ -47,6 +47,14 @@ const Links = () => (
 		>
 			Sub Operations
 		</Link>
+
+		<Link
+			to='/settings'
+			inactiveProps={inactiveProps1}
+			activeProps={activeProps1}
+		>
+			Settings
+		</Link>
 	</div>
 )
 

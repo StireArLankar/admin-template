@@ -23,7 +23,7 @@ const classes = tv({
 
 		inner1: tw.w_full.bg_primary_900.rounded_lg.shadow.border
 			.md(tw.mt_0)
-			.sm(tw.max_w_md)
+			.sm(tw.max_w_xl)
 			.xl(tw.p_0).border_primary_100,
 
 		inner2: tw.p_6.space_y_4.md(tw.space_y_6).sm(tw.p_8),
