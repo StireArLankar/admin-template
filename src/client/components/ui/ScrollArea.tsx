@@ -25,30 +25,57 @@ const classes = tv({
 })()
 
 const ScrollArea = React.forwardRef<
-	React.ElementRef<typeof ScrollAreaPrimitive.Root>,
+	React.ElementRef<
+		typeof ScrollAreaPrimitive.Root & { scrollTopTop: () => {} }
+	>,
 	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
 		noTable?: boolean
 	}
->(({ className, children, noTable, ...props }, ref) => (
-	<ScrollAreaPrimitive.Root
-		ref={ref}
-		className={classes.root({ className })}
-		{...props}
-	>
-		<ScrollAreaPrimitive.Viewport
-			className={classes.viewport({
-				className: noTable ? classes1.noTable : undefined,
-			})}
+>(({ className, children, noTable, ...props }, ref) => {
+	const ref1 = React.useRef<HTMLDivElement>(null)
+
+	React.useImperativeHandle(
+		ref,
+		() => {
+			//@ts-ignore
+			if (ref.current) {
+				//@ts-ignore
+				ref.current.scrollTopTop = () => {
+					if (ref1.current) {
+						ref1.current.scrollTop = 0
+					}
+				}
+			}
+
+			//@ts-ignore
+			return ref.current as any
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	)
+
+	return (
+		<ScrollAreaPrimitive.Root
+			ref={ref}
+			className={classes.root({ className })}
+			{...props}
 		>
-			{children}
-		</ScrollAreaPrimitive.Viewport>
+			<ScrollAreaPrimitive.Viewport
+				ref={ref1}
+				className={classes.viewport({
+					className: noTable ? classes1.noTable : undefined,
+				})}
+			>
+				{children}
+			</ScrollAreaPrimitive.Viewport>
 
-		<ScrollBar orientation='horizontal' />
-		<ScrollBar orientation='vertical' />
+			<ScrollBar orientation='horizontal' />
+			<ScrollBar orientation='vertical' />
 
-		<ScrollAreaPrimitive.Corner />
-	</ScrollAreaPrimitive.Root>
-))
+			<ScrollAreaPrimitive.Corner />
+		</ScrollAreaPrimitive.Root>
+	)
+})
 
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
 

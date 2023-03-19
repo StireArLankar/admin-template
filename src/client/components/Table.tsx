@@ -112,8 +112,17 @@ export default function Table1<T>({ instance }: { instance: Table<T> }) {
 			</tr>
 		))
 
+	const ref = useRef<HTMLDivElement & { scrollTopTop: () => {} }>(null)
+
+	const ops = instance.getState().pagination.pageIndex
+
+	useEffect(() => {
+		ref.current?.scrollTopTop()
+	}, [ops])
+
 	const renderTable = () => (
 		<ScrollArea
+			ref={ref}
 			style={{
 				display: 'block',
 				maxWidth: '100%',
@@ -134,6 +143,7 @@ export default function Table1<T>({ instance }: { instance: Table<T> }) {
 			</div>
 		</ScrollArea>
 	)
+
 	return (
 		<div className={tw.flex_1.flex.flex_col}>
 			{renderTable()}
@@ -149,28 +159,28 @@ export default function Table1<T>({ instance }: { instance: Table<T> }) {
 						onClick={() => instance.setPageIndex(0)}
 						disabled={!instance.getCanPreviousPage()}
 					>
-						<ChevronsLeft />
+						<ChevronsLeft className={tw.w_6.h_6} />
 					</button>
 					<button
 						className={buttonVariants({ variant: 'outline' })}
 						onClick={() => instance.previousPage()}
 						disabled={!instance.getCanPreviousPage()}
 					>
-						<ChevronLeft />
+						<ChevronLeft className={tw.w_6.h_6} />
 					</button>
 					<button
 						className={buttonVariants({ variant: 'outline' })}
 						onClick={() => instance.nextPage()}
 						disabled={!instance.getCanNextPage()}
 					>
-						<ChevronRight />
+						<ChevronRight className={tw.w_6.h_6} />
 					</button>
 					<button
 						className={buttonVariants({ variant: 'outline' })}
 						onClick={() => instance.setPageIndex(instance.getPageCount() - 1)}
 						disabled={!instance.getCanNextPage()}
 					>
-						<ChevronsRight />
+						<ChevronsRight className={tw.w_6.h_6} />
 					</button>
 					<span
 						style={{
@@ -347,7 +357,7 @@ function DebouncedInput({
 				className={tw.px_2}
 				onClick={() => setValue('')}
 			>
-				<X />
+				<X className={tw.w_6.h_6} />
 			</Button>
 		</div>
 	)

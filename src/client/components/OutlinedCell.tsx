@@ -3,7 +3,7 @@ import { memo, useRef } from 'react'
 import { tv } from 'tailwind-variants'
 import { tw } from 'typewind'
 
-import { Button } from '@/components/ui/Button'
+import { buttonVariants } from '@/components/ui/Button'
 import {
 	Tooltip,
 	TooltipContent,
@@ -19,7 +19,13 @@ type CellProps = {
 }
 
 const btnClass = tv({
-	base: tw.whitespace_nowrap.w_full.font_normal.p_1.important(tw.opacity_100),
+	base: buttonVariants({
+		className: tw.whitespace_nowrap.w_full.font_normal.p_1.important(
+			tw.opacity_100
+		),
+		size: 'sm',
+		variant: 'outline',
+	}),
 })
 
 export const OutlinedCell = memo((props: CellProps) => {
@@ -34,15 +40,14 @@ export const OutlinedCell = memo((props: CellProps) => {
 	if (!tooltipValue) {
 		return (
 			<div className={tw.p_1.flex}>
-				<Button
-					variant='outline'
-					size='sm'
-					tabIndex={-1}
+				<div
+					//@ts-ignore
+					disabled
 					style={{ boxShadow: 'none' }}
 					className={btnClass({ className: classByValue?.[value] })}
 				>
 					{value}
-				</Button>
+				</div>
 			</div>
 		)
 	}
@@ -56,15 +61,14 @@ export const OutlinedCell = memo((props: CellProps) => {
 						ref={triggerRef}
 						onClick={(e) => e.preventDefault()}
 					>
-						<Button
-							variant='outline'
-							size='sm'
-							tabIndex={-1}
+						<div
 							style={{ boxShadow: 'none' }}
-							className={btnClass({ className: classByValue?.[value] })}
+							className={btnClass({
+								className: classByValue?.[value],
+							})}
 						>
 							{value}
-						</Button>
+						</div>
 					</TooltipTrigger>
 
 					<TooltipContent

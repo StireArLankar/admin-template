@@ -75,7 +75,7 @@ const LogOutButton = memo(() => {
 				setAuth(null)
 			}}
 		>
-			<LogOut />
+			<LogOut className={tw.w_6.h_6} />
 		</Button>
 	)
 })
@@ -103,7 +103,7 @@ export const layoutRoute = new Route({
 						<aside className={tw.pb_12}>
 							<div className='px-6 py-4'>
 								<p className='flex items-center text-2xl font-semibold tracking-tight'>
-									<Music className='mr-2' />
+									<Music className={tw.w_6.h_6.mr_2} />
 									Menu
 								</p>
 							</div>

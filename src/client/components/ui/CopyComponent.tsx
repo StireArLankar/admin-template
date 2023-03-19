@@ -35,12 +35,12 @@ export const CopyComponent = ({ value }: { value: string }) => {
 		>
 			{hasCopied ? (
 				<Check
-					className={tw.animate_in.duration_300.fade_in_0.zoom_in_50}
+					className={tw.animate_in.duration_300.fade_in_0.zoom_in_50.w_6.h_6}
 					transform='scale(0.9)'
 				/>
 			) : (
 				<Copy
-					className={tw.animate_in.duration_300.fade_in_0.zoom_in_50}
+					className={tw.animate_in.duration_300.fade_in_0.zoom_in_50.w_6.h_6}
 					transform='scale(0.9)'
 				/>
 			)}

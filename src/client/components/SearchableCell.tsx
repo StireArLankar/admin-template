@@ -2,7 +2,7 @@ import { Search } from 'lucide-react'
 import { tv } from 'tailwind-variants'
 import { tw } from 'typewind'
 
-import { Button } from '@/components/ui/Button'
+import { Button, buttonVariants } from '@/components/ui/Button'
 import { stringToTWBgColor } from '@/utils/stringToColor'
 import { checkNever } from '~common/utils/checkNever'
 
@@ -14,7 +14,11 @@ type CellProps = {
 }
 
 const btnClass = tv({
-	base: tw.whitespace_nowrap.w_full.px_3.py_1.important(tw.opacity_100),
+	base: buttonVariants({
+		className: tw.important(tw.opacity_100).whitespace_nowrap.w_full.px_3.py_1,
+		size: 'sm',
+		variant: 'outline',
+	}),
 })
 
 const colorizeToClass = (colorize: CellProps['colorize']) => {
@@ -43,10 +47,7 @@ export const SearchableCell = (props: CellProps) => {
 
 	return (
 		<div className={tw.p_1.flex.space_x_2}>
-			<Button
-				variant='outline'
-				size='sm'
-				tabIndex={-1}
+			<div
 				style={{
 					backgroundColor: colorize ? stringToTWBgColor(value) : undefined,
 					boxShadow: 'none',
@@ -56,7 +57,7 @@ export const SearchableCell = (props: CellProps) => {
 				})}
 			>
 				{value}
-			</Button>
+			</div>
 
 			<Button
 				variant='subtle'
@@ -64,7 +65,7 @@ export const SearchableCell = (props: CellProps) => {
 				className={tw.px_2.py_1.flex_1}
 				onClick={() => setFilterValue(value)}
 			>
-				<Search transform='scale(0.9)' />
+				<Search transform='scale(0.9)' className={tw.w_6.h_6} />
 			</Button>
 		</div>
 	)
