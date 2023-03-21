@@ -1,6 +1,6 @@
 import * as z from 'zod'
 
-import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { useLocalStorage } from '@/hooks/useLocalStorage copy'
 
 export const DEFAULT_FONT_SIZE = 16
 export const MIN_FONT_SIZE = 6
@@ -34,7 +34,8 @@ const schema = z.preprocess((val) => {
 }, z.number())
 
 export const useFontSize = () =>
-	useLocalStorage(FONT_SIZE_LOCAL_STORAGE_KEY, {
+	useLocalStorage({
 		schema,
 		default: DEFAULT_FONT_SIZE,
+		key: FONT_SIZE_LOCAL_STORAGE_KEY,
 	})

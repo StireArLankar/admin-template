@@ -1,6 +1,6 @@
 import * as z from 'zod'
 
-import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { useLocalStorage } from '@/hooks/useLocalStorage copy'
 
 const themeSchema = z.object({
 	'--twc-link-active': z.string(),
@@ -32,9 +32,10 @@ const schema = z.preprocess((val) => {
 }, themeSchema.nullable().catch(null))
 
 export const useCustomTheme = () =>
-	useLocalStorage(CUSTOM_THEME_LOCAL_STORAGE_KEY, {
+	useLocalStorage({
 		schema,
 		default: null,
+		key: CUSTOM_THEME_LOCAL_STORAGE_KEY,
 	})
 
 export type ThemeSchema = z.infer<typeof themeSchema>

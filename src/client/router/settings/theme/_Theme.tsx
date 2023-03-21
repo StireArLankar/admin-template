@@ -59,14 +59,14 @@ const zxc123 = Object.entries(colors)
 	})
 
 const Temp = memo(() => {
-	const [val, slot] = useFontSize()
+	const [val, setFontSize] = useFontSize()
 
 	const { setTheme } = useTheme()
 
-	const [data, themeSlot] = useCustomTheme()
+	const [data, setCustomTheme] = useCustomTheme()
 
 	const onClick = useCallback((data: ThemeSchema) => {
-		themeSlot.set(data)
+		setCustomTheme(data)
 		setTheme('custom')
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -78,20 +78,20 @@ const Temp = memo(() => {
 					<div className={tw.w_['4ch'].text_center}>{val}</div>
 				</div>
 
-				<Button variant='subtle' size='sm' onClick={() => slot.del()}>
+				<Button variant='subtle' size='sm' onClick={() => setFontSize(null)}>
 					Reset
 				</Button>
 
 				<Slider
 					value={[val]}
-					onValueChange={([val]) => slot.set(val)}
+					onValueChange={([val]) => setFontSize(val)}
 					min={MIN_FONT_SIZE}
 					max={MAX_FONT_SIZE}
 				/>
 			</div>
 
 			{data && (
-				<Button variant='subtle' size='sm' onClick={() => themeSlot.del()}>
+				<Button variant='subtle' size='sm' onClick={() => setCustomTheme(null)}>
 					Delete custom theme
 				</Button>
 			)}
