@@ -4,6 +4,7 @@ import { useParams } from '@tanstack/react-router'
 import { tw } from 'typewind'
 
 import { DatePicker } from '@/components/ui/DatePicker'
+import Tets from '@/components/ui/DatePickerV2'
 import { ScrollArea } from '@/components/ui/ScrollArea'
 import { trpc } from '@/utils/trpc'
 
@@ -46,6 +47,9 @@ const Temp = memo(() => {
 						<DatePicker value={dateRange} onChange={setDateRange} />
 					</div>
 					{renderData()}
+				</div>
+				<div>
+					<Tets />
 				</div>
 			</ScrollArea>
 		</div>

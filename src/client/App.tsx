@@ -1,5 +1,5 @@
-import './index.css'
 import './global'
+import './index.css'
 
 import { memo, useEffect, useLayoutEffect } from 'react'
 

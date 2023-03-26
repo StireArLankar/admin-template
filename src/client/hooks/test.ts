@@ -4,8 +4,6 @@ import { atom } from 'jotai/vanilla'
 import type { WritableAtom } from 'jotai/vanilla'
 import * as z from 'zod'
 
-export const NO_STORAGE_VALUE = Symbol()
-
 export type Options<T> = {
 	schema: z.ZodType<T> | z.ZodEffects<any, T>
 	default: T

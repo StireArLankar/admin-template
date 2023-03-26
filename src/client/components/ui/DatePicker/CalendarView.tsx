@@ -28,7 +28,7 @@ import {
 	SelectItem,
 } from '@/components/ui/Select'
 
-const cellClass = tv({
+export const cellClass = tv({
 	base: tw.p_1.duration_75.text_xs.text_center.w_full.h_7.border
 		.border_primary_600,
 

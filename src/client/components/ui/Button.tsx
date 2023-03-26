@@ -5,7 +5,7 @@ import { tw } from 'typewind'
 
 const base =
 	tw.border.border_transparent.inline_flex.items_center.justify_center.rounded_md.text_sm.font_medium.transition_colors
-		.focus(tw.outline_none.ring_2.ring_offset_2)
+		.focus(tw.outline_none.ring_1.ring_offset_1)
 		.hover(tw.bg_primary_700.text_primary_text)
 		.focus(tw.ring_primary_300.ring_offset_primary_800)
 		.disabled(tw.opacity_50.pointer_events_none)
