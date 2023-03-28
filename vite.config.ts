@@ -30,7 +30,6 @@ export default defineConfig(({ mode }) => {
 					secure: false,
 				},
 			},
-			port: 3001,
 		},
 	} as UserConfig
 })

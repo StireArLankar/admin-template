@@ -1,7 +1,8 @@
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 
-import { Link, Outlet, Route } from '@tanstack/react-router'
-import { LogOut, Music } from 'lucide-react'
+import { Link, Outlet, Route, useRouter } from '@tanstack/react-router'
+import { LogOut, Music, Sidebar } from 'lucide-react'
+import { tv } from 'tailwind-variants'
 import { tw } from 'typewind'
 
 import { rootRoute } from './rootRoute'
@@ -75,30 +76,60 @@ const LogOutButton = memo(() => {
 				setAuth(null)
 			}}
 		>
-			<LogOut className={tw.w_6.h_6} />
+			<LogOut className={tw.w_4.h_4} />
 		</Button>
 	)
 })
 
-// Our layout route
-export const layoutRoute = new Route({
-	getParentRoute: () => rootRoute,
-	id: 'layout',
-	component: () => (
+const sidebar = tv({
+	base: tw.flex_col.flex.w_full.transition_transform.bottom_0.top_0
+		.sm(tw.transform_none.z_auto.border_r_2.border_primary_400.transition_none)
+		.important(tw.absolute)
+		.sm(tw.important(tw.relative)).bg_primary_900.z_50,
+
+	variants: {
+		open: {
+			true: tw.translate_x_0,
+			false: tw.translate_x_['-100%'],
+		},
+	},
+})
+
+const Layout = () => {
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+	const zxc = useRouter()
+
+	useEffect(() => {
+		return zxc.__store.subscribe((state) => {
+			if (state.currentLocation !== state.latestLocation) {
+				setIsSidebarOpen(false)
+			}
+		})
+	}, [zxc.__store])
+
+	return (
 		<>
-			<div
-				className={tw.self_end.gap_2.p_2.grid.grid_flow_col.auto_cols_max.hover(
-					tw.auto_cols_min
-				)}
-			>
+			<div className={tw.gap_2.p_2.flex.justify_end}>
+				<Button
+					variant='outline'
+					className={tw.sm(tw.hidden).mr_auto}
+					onClick={() => setIsSidebarOpen((prev) => !prev)}
+				>
+					<Sidebar className={tw.w_4.h_4} />
+				</Button>
+
 				<ThemeToggle />
 				<LogOutButton />
 			</div>
 
 			<hr className={tw.border_primary_400} />
 
-			<div className={tw.min_h_0.flex_1.grid.h_full.grid_cols_['230px_1fr']}>
-				<ScrollArea className={tw.flex_col.flex.border_r_2.border_primary_400}>
+			<div
+				className={tw.min_h_0.flex_1.grid.relative.h_full.sm(
+					tw.grid_cols_['230px_1fr']
+				)}
+			>
+				<ScrollArea className={sidebar({ open: isSidebarOpen })}>
 					<div className={tw.flex.flex_col}>
 						<aside className={tw.pb_12}>
 							<div className='px-6 py-4'>
@@ -126,5 +157,12 @@ export const layoutRoute = new Route({
 				</div>
 			</div>
 		</>
-	),
+	)
+}
+
+// Our layout route
+export const layoutRoute = new Route({
+	getParentRoute: () => rootRoute,
+	id: 'layout',
+	component: Layout,
 })
