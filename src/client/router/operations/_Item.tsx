@@ -90,12 +90,12 @@ const Temp = memo(() => {
 				</h1>
 
 				<ScrollArea style={{ maxHeight: `6.6rem` }}>
-					<div className={tw.flex.flex_wrap.gap_2.mt_1}>
+					<div className={tw.flex.pb_2.gap_2.mt_1.sm(tw.flex_wrap)}>
 						{data.flow.split(' ').map((item, index, arr) => (
 							<span
 								className={
 									tw.px_1.py_[0.5].text_sm.rounded_md.bg_opacity_40
-										.text_primary_text
+										.text_primary_text.whitespace_nowrap
 								}
 								style={{
 									backgroundColor: stringToTWBgColor(item),
@@ -110,7 +110,7 @@ const Temp = memo(() => {
 					</div>
 				</ScrollArea>
 
-				<hr className={tw.border_primary_400.my_2} />
+				<hr className={tw.border_primary_400.mb_2} />
 
 				<Tabs value={value} className={tabsClasses.root()}>
 					<div className={tw.flex.justify_between}>

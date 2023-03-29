@@ -116,6 +116,20 @@ export const initApp = async () => {
 
 	app.get('/', htmlHandler)
 
+	app.get('/test', (req, res) => {
+		const data =
+			'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+
+		const img = Buffer.from(data, 'base64')
+
+		res.writeHead(200, {
+			'Content-Type': 'image/png',
+			'Content-Length': img.length,
+		})
+
+		res.end(img)
+	})
+
 	app.use(express.static(buildDir))
 
 	app.get('*', htmlHandler)

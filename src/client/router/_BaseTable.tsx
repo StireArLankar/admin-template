@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { PropsWithChildren, useMemo, useRef } from 'react'
 
 import { RegisteredRoutesInfo, useNavigate } from '@tanstack/react-router'
 import {
@@ -18,12 +18,14 @@ import TableComponent from '@/components/Table'
 import { entityRoutesKeys, trpc } from '@/utils/trpc'
 import { listSchema } from '~common/typings'
 
-export const BaseTable = (props: {
-	search: z.infer<typeof listSchema>
-	kee: entityRoutesKeys
-	path: RegisteredRoutesInfo['routePaths']
-	columns: ColumnDef<any, any>[]
-}) => {
+export const BaseTable = (
+	props: PropsWithChildren<{
+		search: z.infer<typeof listSchema>
+		kee: entityRoutesKeys
+		path: RegisteredRoutesInfo['routePaths']
+		columns: ColumnDef<any, any>[]
+	}>
+) => {
 	const { search, kee, path, columns } = props
 	const { pageIndex, pageSize, sort, filters } = search
 	const navigate = useNavigate({ from: '/' })
@@ -122,6 +124,8 @@ export const BaseTable = (props: {
 
 	return (
 		<div className={tw.flex_1.flex.flex_col}>
+			{props.children}
+			{props.children && <hr className={tw.border_primary_600} />}
 			<TableComponent instance={instance} />
 		</div>
 	)

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useDatePicker } from 'react-aria'
+import { I18nProvider, useDatePicker } from 'react-aria'
 import { DatePickerStateOptions, useDatePickerState } from 'react-stately'
 
 import { CalendarDateTime } from '@internationalized/date'
@@ -14,9 +14,9 @@ import { DateField } from './DateField'
 import { buttonVariants } from '@/components/ui/Button'
 
 export function DatePicker(props: DatePickerStateOptions<CalendarDateTime>) {
-	let state = useDatePickerState(props)
-	let ref = useRef(null)
-	let {
+	const state = useDatePickerState(props)
+	const ref = useRef(null)
+	const {
 		groupProps,
 		labelProps,
 		fieldProps,
@@ -51,7 +51,9 @@ export function DatePicker(props: DatePickerStateOptions<CalendarDateTime>) {
 										),
 							})}
 						>
-							<DateField {...fieldProps} hourCycle={24} />
+							<I18nProvider locale='en-GB'>
+								<DateField {...fieldProps} hourCycle={24} />
+							</I18nProvider>
 							{state.validationState === 'invalid' && (
 								<AlarmCheck className='w-6 h-6 text-red-500 absolute right-1' />
 							)}
